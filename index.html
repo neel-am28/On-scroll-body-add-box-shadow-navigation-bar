@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nav with scroll box-shadow</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+    }
+
+    .nav-bar {
+        width: 100%;
+        position: fixed;
+        height: 3rem;
+        transition: all ease 300ms;
+    }
+
+    .nav-bar ul {
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-bar ul li {
+        list-style-type: none;
+        padding: 0.5rem 2rem;
+        line-height: 2;
+        color: #454343;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: inline-block;
+        cursor: pointer;
+        transition: all 400ms ease;
+    }
+
+    .nav-bar ul li:hover,
+    .nav-bar ul li.active {
+        color: #fff;
+        background: #ed44b4;
+    }
+
+    .active {
+        color: rgb(255 255 255 / 80%);
+        background: #54a7a0;
+    }
+
+    .shadow {
+        background: rgb(255 255 255);
+        box-shadow: 0px 4px 20px -2px rgba(50, 50, 50, 0.75);
+    }
+
+    .content {
+        background: url('./background.jpg') no-repeat center center/cover;
+        width: 100%;
+        height: 200vh;
+    }
+</style>
+
+<body>
+
+    <div class="content">
+        <nav class="nav-bar">
+            <ul>
+                <li class="active">Home</li>
+                <li>About</li>
+                <li>Services</li>
+                <li>Contact</li>
+            </ul>
+        </nav>
+    </div>
+    <span>Photo by <a
+            href="https://unsplash.com/@icidius?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Ciaran
+            O'Brien</a> on <a
+            href="https://unsplash.com/s/photos/korea?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+    <script>
+        const nav = document.querySelector('.nav-bar');
+        window.onscroll = function () {
+            if (document.documentElement.scrollTop >= 64) {
+                nav.classList.add('shadow');
+            } else {
+                nav.classList.remove('shadow');
+            }
+        }
+        const links = document.querySelectorAll('li');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                links.forEach(item => {
+                    item.classList.remove('active');
+                })
+                link.classList.add('active');
+            })
+        })
+
+    </script>
+</body>
+
+</html>
